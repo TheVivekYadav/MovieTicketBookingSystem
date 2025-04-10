@@ -128,12 +128,12 @@ git clone https://github.com/thevivekyadav/MovieTicketBookingSystem.git
 ```
 # Install dependencies
 ```bash
-npm install  # or npm install
+npm install
 ```
 
 # Start server
 ```bash
-npm start     # or npm start
+npm start
 ```
 
 ## 👨‍💻 Developed By
