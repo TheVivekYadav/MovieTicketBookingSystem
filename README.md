@@ -1,6 +1,6 @@
 # 🎬 Movie Ticket Booking System
 
-A backend movie ticket booking web application that allows users to register, browse movies, book specific seats for shows, and pay securely via Razorpay. Built with Node.js, Express, MongoDB, and minimal frontend using HTML/CSS/JS.
+A backend movie ticket booking web application that allows users to register, browse movies, book specific seats for shows, and pay securely via Razorpay. Built with Node.js, Express, MongoDB.
 
 ---
 
