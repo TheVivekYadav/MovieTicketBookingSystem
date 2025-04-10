@@ -6,7 +6,7 @@ A backend movie ticket booking web application that allows users to register, br
 
 ## 🌐 Live Demo
 
-> 🔗 [https://movieticketbookingsystem.onrender.com/](https://movieticketbookingsystem.onrender.com/) *(Replace with actual Render URL)*
+> 🔗 [https://movieticketbookingsystem.onrender.com/](https://movieticketbookingsystem.onrender.com/) 
 
 ---
 
