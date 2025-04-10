@@ -5,15 +5,15 @@ export const sendMail = async (options) => {
 
   const mailGenerator = new Mailgen({
     product: {
-    theme: "default",
-    name: "Mailgen",
-    link: "https://mailgen.js/"
+      theme: "default",
+      name: "Mailgen",
+      link: "https://mailgen.js/"
     },
   });
 
   const emailText = mailGenerator.generatePlaintext(options.mailGenContent);
   const emailHtml = mailGenerator.generate(options.mailGenContent);
-  
+
   const transporter = nodemailer.createTransport({
     host: process.env.MAILTRAP_SMTP_HOST,
     port: process.env.MAILTRAP_SMTP_PORT,
@@ -24,7 +24,7 @@ export const sendMail = async (options) => {
     }
   });
 
-  
+
   const mail = {
     from: 'mail.taskmanager@example.com',
     to: options.email,
@@ -32,9 +32,9 @@ export const sendMail = async (options) => {
     text: emailText,
     html: emailHtml,
   }
-  try{
-  await transporter.sendMail(mail);
-  }catch(e){
+  try {
+    await transporter.sendMail(mail);
+  } catch (e) {
     console.error(e);
   }
 
@@ -62,37 +62,39 @@ export const forgotPasswordMailGenContent = (username, resetPassUrl) => {
   return {
     body: {
       name: username,
-      intro: "Request to reset password",
+      intro: "You have requested to reset your password.",
       action: {
-        instructions: "To change your password click here",
+        instructions: "Click the button below to reset your password. If you didn’t request this, please ignore this email.",
         button: {
           color: "#22BC66",
-          text: "reset passwd",
-          link: "resetPassUrl",
+          text: "Reset Password",
+          link: resetPassUrl
         }
       },
-      outro: "This is outro"
+      outro: "If you have any questions or need help, feel free to reply to this email."
     }
-  }
-}
+  };
+};
 
 export const emailConfirmationMailGenContent = (username, showDetailUrl) => {
   return {
-    body:{
+    body: {
       name: username,
-      intro: "Booking Intro",
+      intro: "Thank you for booking your movie ticket with us!",
       action: {
-        instructions: "Intruction of bookings",
+        instructions: "To view your booking details, please click the button below:",
         button: {
           color: "#22BC66",
-          text: "Details",
-          link: "link to the view the details on fronted"
+          text: "View Booking",
+          link: showDetailUrl
         }
       },
-      outro: "This is outro of bookings",
+      outro: "We hope you enjoy your movie! If you have any questions, feel free to contact our support team."
     }
-  }
-}
+  };
+};
+
+
 
 /*
 sendMail({
