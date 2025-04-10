@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auth System</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #3399cc;
+      color: white;
+      font-weight: bold;
+    }
+    .toggle {
+      margin-top: 1rem;
+      text-align: center;
+      cursor: pointer;
+      color: #3399cc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 id="form-title">Login</h2>
+    <form id="auth-form">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <div class="toggle" id="toggle-form">Don't have an account? Register</div>
+  </div>
+
+  <script>
+    const baseUrl = 'http://localhost:8000/api/v1/auth';
+    let isLogin = true;
+
+    const formTitle = document.getElementById('form-title');
+    const authForm = document.getElementById('auth-form');
+    const toggleForm = document.getElementById('toggle-form');
+    const button = authForm.querySelector('button');
+
+    toggleForm.addEventListener('click', () => {
+      isLogin = !isLogin;
+      formTitle.innerText = isLogin ? 'Login' : 'Register';
+      button.innerText = isLogin ? 'Login' : 'Register';
+      toggleForm.innerText = isLogin ? "Don't have an account? Register" : "Already have an account? Login";
+    });
+
+    authForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+
+      const endpoint = isLogin ? '/login' : '/register';
+
+      try {
+        const res = await fetch(`${baseUrl}${endpoint}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        const data = await res.json();
+        console.log(data);
+
+        if (res.ok) {
+          alert(data.message || 'Success!');
+        } else {
+          alert(data.message || 'Something went wrong.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network error.');
+      }
+    });
+  </script>
+</body>
+</html>
+

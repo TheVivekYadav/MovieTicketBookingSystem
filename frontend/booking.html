@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Your Bookings</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; }
+    .booking {
+      border: 1px solid #ccc;
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+    }
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Your Bookings</h1>
+  <div id="bookingsContainer">Loading bookings...</div>
+
+  <script>
+    async function fetchBookings() {
+      const res = await fetch('http://localhost:8000/api/v1/booking/me', {
+        credentials: 'include' // include cookies for auth
+      });
+
+      const data = await res.json();
+      const container = document.getElementById('bookingsContainer');
+      container.innerHTML = '';
+
+      if (!data.success || data.bookings.length === 0) {
+        container.textContent = 'No bookings found.';
+        return;
+      }
+
+      data.bookings.forEach(booking => {
+        const div = document.createElement('div');
+        div.className = 'booking';
+        div.innerHTML = `
+          <p><strong>Booking ID:</strong> ${booking._id}</p>
+          <p><strong>Payment Status:</strong> ${booking.paymentStatus}</p>
+          <button onclick="payForBooking('${booking._id}')">Pay</button>
+        `;
+        container.appendChild(div);
+      });
+    }
+
+    async function payForBooking(bookingId) {
+      const res = await fetch('http://localhost:8000/api/v1/payment/pay', {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ bookingId })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        alert('Payment initiated or completed successfully.');
+        location.reload();
+      } else {
+        alert('Payment failed: ' + (data.message || 'Unknown error'));
+      }
+    }
+
+    fetchBookings();
+  </script>
+</body>
+</html>
