@@ -50,7 +50,7 @@ A backend movie ticket booking web application that allows users to register, br
 ## 🔑 Environment Variables (`.env`)
 
 ```env
-PORT=8000
+PORT=
 MONGO_URI=
 
 MAILTRAP_SMTP_HOST=
@@ -61,8 +61,8 @@ MAILTRAP_SMTP_PASS=
 ACCESS_TOKEN_SECRET=
 REFRESH_TOKEN_SECRET=
 
-ACCESS_TOKEN_EXPIRY=1d # 1 day
-REFRESH_TOKEN_EXPIRY=10d # 10 days
+ACCESS_TOKEN_EXPIRY=
+REFRESH_TOKEN_EXPIRY=
 
 RAZORPAY_KEY_ID=
 RAZORPAY_KEY_SECRET=
