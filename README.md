@@ -71,12 +71,17 @@ MovieTicketBookingSystem/
 
 ```env
 PORT=8000
-MONGO_URI=your_mongodb_uri
-ACCESS_TOKEN_SECRET=your_jwt_access_secret
-REFRESH_TOKEN_SECRET=your_jwt_refresh_secret
-RAZORPAY_KEY_ID=your_razorpay_key_id
-RAZORPAY_KEY_SECRET=your_razorpay_key_secret
-FRONTEND_URL=http://localhost:5500
+MONGO_URI=
+
+MAILTRAP_SMTP_HOST=
+MAILTRAP_SMTP_PORT=
+MAILTRAP_SMTP_USER=
+MAILTRAP_SMTP_PASS=
+
+ACCESS_TOKEN_SECRET=
+REFRESH_TOKEN_SECRET=
+RAZORPAY_KEY_ID=
+RAZORPAY_KEY_SECRET=
 ```
 ## 📦 API Endpoints (Sample)
 
