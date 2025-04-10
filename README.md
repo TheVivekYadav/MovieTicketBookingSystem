@@ -47,26 +47,6 @@ A backend movie ticket booking web application that allows users to register, br
 
 ---
 
-## 📂 Project Structure
-
-MovieTicketBookingSystem/ 
-├── src/ 
-  ├── auth/ 
-  ├── movies/ 
-  ├── controllers/ 
-  ├── models/ 
-  ├── routes/ 
-  ├── middleware/ 
-  └── utils/ 
-  ├── frontend/  
-  └── index.html 
-  ├── .env.example 
-  ├── .gitignore 
-  ├── package.json 
-  └── README.md
-
----
-
 ## 🔑 Environment Variables (`.env`)
 
 ```env
