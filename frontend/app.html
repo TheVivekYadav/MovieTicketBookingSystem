@@ -27,7 +27,7 @@
 
       async function pay(orderId) {
         try {
-          const res = await fetch(`http://localhost:8000/api/v1/payment/pay/${orderId}`, {
+          const res = await fetch(`https://movieticketbookingsystem.onrender.com/api/v1/payment/pay/${orderId}`, {
             method: "POST",
             credentials: "include",
             headers: {
@@ -57,7 +57,7 @@
     console.log("🧾 Order ID:", response.razorpay_order_id);
     console.log("💳 Payment ID:", response.razorpay_payment_id);
     console.log("🖋 Signature:", response.razorpay_signature);
-              const verifyRes = await fetch(`http://localhost:8000/api/v1/payment/verify`, {
+              const verifyRes = await fetch(`https://movieticketbookingsystem.onrender.com/api/v1/payment/verify`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
